@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women Safety App - Your trusted companion for safety and security</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0d061a',
+                        foreground: '#ffffff',
+                        card: 'rgba(26, 16, 48, 0.6)',
+                        'card-foreground': '#ffffff',
+                        primary: '#ff3b3b',
+                        'primary-foreground': '#ffffff',
+                        secondary: 'rgba(108, 74, 242, 0.8)',
+                        'secondary-foreground': '#ffffff',
+                        muted: 'rgba(255, 255, 255, 0.1)',
+                        'muted-foreground': 'rgba(255, 255, 255, 0.7)',
+                        accent: '#6c4af2',
+                        'accent-foreground': '#ffffff',
+                        destructive: '#ff3b3b',
+                        'destructive-foreground': '#ffffff',
+                        border: 'rgba(255, 255, 255, 0.1)',
+                        input: 'rgba(26, 16, 48, 0.8)',
+                        ring: '#ff3b3b'
+                    },
+                    fontFamily: {
+                        'sans': ['DM Sans', 'sans-serif']
+                    },
+                    borderRadius: {
+                        'lg': '1.5rem'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0d061a 0%, #1a1030 50%, #0f0820 100%);
+            min-height: 100vh;
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(255, 59, 59, 0.3), 0 0 40px rgba(255, 59, 59, 0.2), 0 0 60px rgba(255, 59, 59, 0.1);
+        }
+
+        .neon-glow-purple {
+            box-shadow: 0 0 20px rgba(108, 74, 242, 0.3), 0 0 40px rgba(108, 74, 242, 0.2), 0 0 60px rgba(108, 74, 242, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(26, 16, 48, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6/dist/umd/react-router-dom.development.js"></script>
+    <script src="https://unpkg.com/lucide-react@0.263.1/dist/umd/lucide-react.js"></script>
+    <script type="text/babel" src="./src/App.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</body>
+</html>
