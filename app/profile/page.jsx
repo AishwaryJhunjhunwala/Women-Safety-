@@ -17,9 +17,9 @@ import Link from "next/link"
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState({
-    name: "Sarah Johnson",
-    email: "sarah.johnson@email.com",
-    phone: "+1 (555) 123-4567",
+    name: "Ananya Pandey",
+    email: "ananya.pandey@email.com",
+    phone: "+91 82958 67XXX",
     emergencyMessage: "I need help! Please check on me immediately.",
   })
 
@@ -27,14 +27,14 @@ export default function ProfilePage() {
     {
       id: "1",
       name: "Mom",
-      phone: "+1 (555) 987-6543",
+      phone: "+91 94160 71XXX",
       relationship: "Mother",
       isPrimary: true,
     },
     {
       id: "2",
-      name: "John Smith",
-      phone: "+1 (555) 456-7890",
+      name: "Rohan Patel",
+      phone: "+91 75678 90XXX",
       relationship: "Partner",
       isPrimary: false,
     },
@@ -44,7 +44,7 @@ export default function ProfilePage() {
     {
       id: "1",
       name: "Mom",
-      phone: "+1 (555) 987-6543",
+      phone: "+91 94160 71XXX",
       email: "mom@email.com",
       relationship: "Mother",
       canTrackLocation: true,
@@ -53,7 +53,7 @@ export default function ProfilePage() {
     {
       id: "2",
       name: "Best Friend",
-      phone: "+1 (555) 111-2222",
+      phone: "+91 70504 56XXX",
       email: "friend@email.com",
       relationship: "Friend",
       canTrackLocation: false,
@@ -62,7 +62,7 @@ export default function ProfilePage() {
   ])
 
   const [safetySettings, setSafetySettings] = useState({
-    codeWord: "butterfly",
+    codeWord: "safeguard",
     defaultTimer: 30,
     autoRecording: true,
     locationSharing: true,
@@ -126,6 +126,31 @@ export default function ProfilePage() {
   const updateTrustedMemberPermission = (id, permission, value) => {
     setTrustedCircle(trustedCircle.map((member) => (member.id === id ? { ...member, [permission]: value } : member)))
   }
+  const openEditContact = (contact) => {
+  setEditingContact(contact);
+  };
+
+  const openEditTrustedMember = (member) => {
+  setEditingTrustedMember(member);
+  };
+  const saveEditedContact = () => {
+  setEmergencyContacts(
+    emergencyContacts.map((contact) =>
+      contact.id === editingContact.id ? editingContact : contact
+    )
+  );
+  setEditingContact(null); // close modal
+  };
+
+  const saveEditedTrustedMember = () => {
+  setTrustedCircle(
+    trustedCircle.map((member) =>
+      member.id === editingTrustedMember.id ? editingTrustedMember : member
+    )
+  );
+  setEditingTrustedMember(null); // close modal
+  };
+
 
   return (
     <div className="min-h-screen">
@@ -183,7 +208,7 @@ export default function ProfilePage() {
                 <div className="flex items-center gap-6">
                   <Avatar className="w-20 h-20 ring-2 ring-primary/30">
                     <AvatarImage src="/placeholder.svg?height=80&width=80" />
-                    <AvatarFallback className="text-lg bg-primary/20 text-primary">SJ</AvatarFallback>
+                    <AvatarFallback className="text-lg bg-primary/20 text-primary">AP</AvatarFallback>
                   </Avatar>
                   <div className="space-y-2">
                     <Button
@@ -363,7 +388,7 @@ export default function ProfilePage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 hover:text-accent">
+                        <Button  variant="ghost" size="icon" className="text-white hover:bg-white/10 hover:text-accent">
                           <Edit className="w-4 h-4" />
                         </Button>
                         <Button
