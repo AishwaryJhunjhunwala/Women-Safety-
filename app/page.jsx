@@ -118,7 +118,11 @@ export default function HomePage() {
         <div className="flex items-center justify-between max-w-6xl mx-auto">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center neon-glow-purple">
-              <Shield className="w-5 h-5 text-white" />
+            <img
+              src="https://res.cloudinary.com/dswk9scro/image/upload/v1757175356/women_1_rkzovy.png"
+              alt="SAHAS logo"
+              className="w-8 h-8 object-contain"
+            />
             </div>
             <span className="font-bold text-2xl tracking-wider text-white">SAHAS</span>
           </div>
@@ -154,17 +158,26 @@ export default function HomePage() {
 
           <div className="max-w-6xl mx-auto text-center space-y-12 relative z-10">
             <div className="space-y-6">
-              <h1 className="text-5xl md:text-7xl font-bold text-white text-balance leading-tight">
-                Your Safety.
+              {/* background image */}
+              <img
+                src="https://res.cloudinary.com/dswk9scro/image/upload/v1757176269/defence_1_qqpfud.png"
+                alt="SAHAS background"
+                className="absolute inset-0 mx-auto w-[350px] md:w-[600px] h-[200px] md:h-[400px] opacity-38 object-contain -z-10"
+              />
+              {/* foreground content */}
+              <div>
+                <h1 className="text-5xl md:text-7xl font-bold text-white text-balance leading-tight">
+                Safer Streets,
                 <br />
-                Your Power.
+                Stronger Women.
               </h1>
               <p className="text-white/70 text-xl max-w-2xl mx-auto text-pretty">
                 Empowering women with instant emergency response, community support, and safety resources at your
                 fingertips.
               </p>
+              </div>
+              
             </div>
-
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
               <Card className="glass-card border-white/10 cursor-pointer hover:border-primary/50 transition-all duration-300 hover:scale-105 group">
                 <CardContent className="p-6 text-center">
@@ -229,7 +242,7 @@ export default function HomePage() {
                 className="glass-card border-white/20 text-white hover:bg-white/10 h-14"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                Call Contact
+                Call Emergency Contact
               </Button>
             </div>
           </div>
