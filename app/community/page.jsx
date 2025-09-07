@@ -35,7 +35,7 @@ const mockReports = [
     description:
       "The street lights have been broken for weeks. Very dark after 7 PM, making it unsafe for women walking alone.",
     category: "poor-lighting",
-    reportedBy: "Sarah M.",
+    reportedBy: "Neha M.",
     reportedAt: "2 hours ago",
     likes: 12,
     comments: [
