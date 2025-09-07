@@ -155,9 +155,9 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto text-center space-y-12 relative z-10">
             <div className="space-y-6">
               <h1 className="text-5xl md:text-7xl font-bold text-white text-balance leading-tight">
-                Your Safety.
+                Safer Streets
                 <br />
-                Your Power.
+                Stronger Women.
               </h1>
               <p className="text-white/70 text-xl max-w-2xl mx-auto text-pretty">
                 Empowering women with instant emergency response, community support, and safety resources at your
