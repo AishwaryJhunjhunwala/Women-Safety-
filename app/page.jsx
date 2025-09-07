@@ -294,7 +294,7 @@ export default function HomePage() {
                 </div>
                 {timerActive && (
                   <Badge className="mt-3 bg-accent/20 text-accent border-accent/30">
-                    Timer active - Check in required in {safetyTimer} minutes
+                    Timer active - Check in required in {safetyTimer} minute
                   </Badge>
                 )}
               </CardContent>
