@@ -3,11 +3,10 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'SAHAS',
+  description: 'Women Safety App - Empowering women with safety tools and community support',
+  generator: 'SAHAS',
 }
 
 export default function RootLayout({
