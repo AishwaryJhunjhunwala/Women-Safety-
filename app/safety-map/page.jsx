@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -19,51 +20,67 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 
+const mapContainerStyle = {
+  width: "100%",
+  height: "100%",
+  borderRadius: "0.5rem",
+}
+
+const center = {
+  lat: 22.2531, // NIT Rourkela latitude
+  lng: 84.9012, // NIT Rourkela longitude
+}
+
+// You might also want to update some mock locations near NIT Rourkela
 const mockLocations = [
   {
     id: "1",
-    name: "Central Police Station",
+    name: "NIT Rourkela Police Outpost",
     type: "police",
-    coordinates: { lat: 28.6139, lng: 77.209 },
-    description: "24/7 police station with women's help desk",
+    coordinates: { lat: 22.2531, lng: 84.9012 },
+    description: "24/7 campus police outpost",
     verified: true,
   },
   {
     id: "2",
-    name: "City Hospital",
+    name: "NITR Health Centre",
     type: "hospital",
-    coordinates: { lat: 28.6129, lng: 77.2295 },
-    description: "Emergency medical services available",
+    coordinates: { lat: 22.2525, lng: 84.9015 },
+    description: "Campus medical services available",
     verified: true,
   },
   {
     id: "3",
-    name: "Safe Haven Cafe",
+    name: "CCD NIT Rourkela",
     type: "cafe",
-    coordinates: { lat: 28.6169, lng: 77.209 },
-    description: "Well-lit cafe, safe space for women",
+    coordinates: { lat: 22.2520, lng: 84.9010 },
+    description: "Well-lit cafe, safe space within campus",
     verified: true,
   },
   {
     id: "4",
-    name: "Park Area - Poorly Lit",
+    name: "Back Gate Area",
     type: "unsafe",
-    coordinates: { lat: 28.61, lng: 77.22 },
-    description: "Reported as poorly lit area, avoid after dark",
+    coordinates: { lat: 22.2510, lng: 84.9020 },
+    description: "Limited lighting after dark",
     reportedBy: "Anonymous User",
     reportedAt: "2 days ago",
   },
   {
     id: "5",
-    name: "Metro Station Plaza",
+    name: "Main Gate Plaza",
     type: "safe",
-    coordinates: { lat: 28.618, lng: 77.215 },
-    description: "Well-lit area with security cameras",
+    coordinates: { lat: 22.2540, lng: 84.9005 },
+    description: "Well-lit area with 24/7 security",
     verified: true,
   },
 ]
 
 export default function SafetyMapPage() {
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+  })
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedFilter, setSelectedFilter] = useState("all")
   const [selectedLocation, setSelectedLocation] = useState(null)
@@ -90,6 +107,23 @@ export default function SafetyMapPage() {
         return <AlertTriangle className="w-4 h-4 text-primary" />
       default:
         return <MapPin className="w-4 h-4 text-white" />
+    }
+  }
+
+  const getMarkerIcon = (type) => {
+    switch (type) {
+      case "police":
+        return "/police-marker.png"
+      case "hospital":
+        return "/hospital-marker.png"
+      case "cafe":
+        return "/cafe-marker.png"
+      case "safe":
+        return "/safe-marker.png"
+      case "unsafe":
+        return "/unsafe-marker.png"
+      default:
+        return null
     }
   }
 
@@ -196,31 +230,42 @@ export default function SafetyMapPage() {
           <div className="lg:col-span-2">
             <Card className="glass-card border-white/10">
               <CardContent className="p-0">
-                {/* Placeholder Map */}
-                <div className="relative h-96 lg:h-[600px] bg-gradient-to-br from-background/50 to-card/50 rounded-lg overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <MapPin className="w-12 h-12 text-primary mx-auto mb-4 neon-glow" />
-                      <h3 className="font-semibold text-lg mb-2 text-white">Interactive Safety Map</h3>
-                      <p className="text-white/70 text-sm max-w-xs">
-                        Map integration would show real locations with interactive markers
-                      </p>
+                <div className="relative h-96 lg:h-[600px] rounded-lg overflow-hidden">
+                  {isLoaded ? (
+                    <GoogleMap
+                      mapContainerStyle={mapContainerStyle}
+                      center={center}
+                      zoom={14}
+                      options={{
+                        styles: [
+                          // Add custom map styles here if needed
+                          // Dark theme example:
+                          { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                          { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                          { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                        ],
+                        disableDefaultUI: true,
+                        zoomControl: true,
+                      }}
+                    >
+                      {filteredLocations.map((location) => (
+                        <Marker
+                          key={location.id}
+                          position={location.coordinates}
+                          icon={getMarkerIcon(location.type)}
+                          onClick={() => setSelectedLocation(location)}
+                          animation={google.maps.Animation.DROP}
+                        />
+                      ))}
+                    </GoogleMap>
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-background/50 to-card/50">
+                      <div className="text-center">
+                        <MapPin className="w-12 h-12 text-primary mx-auto mb-4 neon-glow" />
+                        <h3 className="font-semibold text-lg mb-2 text-white">Loading map...</h3>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Mock Map Markers */}
-                  <div className="absolute top-20 left-20 w-6 h-6 bg-accent rounded-full flex items-center justify-center shadow-lg neon-glow-purple">
-                    <Shield className="w-3 h-3 text-white" />
-                  </div>
-                  <div className="absolute top-32 right-24 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-lg neon-glow">
-                    <Hospital className="w-3 h-3 text-white" />
-                  </div>
-                  <div className="absolute bottom-32 left-32 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                    <Coffee className="w-3 h-3 text-white" />
-                  </div>
-                  <div className="absolute bottom-20 right-20 w-6 h-6 bg-primary rounded-full flex items-center justify-center shadow-lg neon-glow">
-                    <AlertTriangle className="w-3 h-3 text-white" />
-                  </div>
+                  )}
 
                   {/* Map Controls */}
                   <div className="absolute top-4 right-4 space-y-2">
@@ -376,6 +421,7 @@ export default function SafetyMapPage() {
           </div>
         </div>
       </div>
+       <p className="items-center text-center mt-6 gap-4 px-4 text-xl">Architected with ♥ by Team SAHAS</p>
     </div>
   )
 }

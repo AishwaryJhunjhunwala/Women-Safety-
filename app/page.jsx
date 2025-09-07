@@ -118,7 +118,11 @@ export default function HomePage() {
         <div className="flex items-center justify-between max-w-6xl mx-auto">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center neon-glow-purple">
-              <Shield className="w-5 h-5 text-white" />
+            <img
+              src="https://res.cloudinary.com/dswk9scro/image/upload/v1757175356/women_1_rkzovy.png"
+              alt="SAHAS logo"
+              className="w-8 h-8 object-contain"
+            />
             </div>
             <span className="font-bold text-2xl tracking-wider text-white">SAHAS</span>
           </div>
@@ -155,16 +159,17 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto text-center space-y-12 relative z-10">
             <div className="space-y-6">
               <h1 className="text-5xl md:text-7xl font-bold text-white text-balance leading-tight">
-                Safer Streets
+                Your Safety.
                 <br />
                 Stronger Women.
               </h1>
-              <p className="text-white/70 text-xl max-w-2xl mx-auto text-pretty">
+              <p className="text-white text-xl max-w-2xl mx-auto text-pretty">
                 Empowering women with instant emergency response, community support, and safety resources at your
                 fingertips.
               </p>
+              </div>
+              
             </div>
-
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
               <Card className="glass-card border-white/10 cursor-pointer hover:border-primary/50 transition-all duration-300 hover:scale-105 group">
                 <CardContent className="p-6 text-center">
@@ -229,11 +234,24 @@ export default function HomePage() {
                 className="glass-card border-white/20 text-white hover:bg-white/10 h-14"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                Call Contact
+                Call Emergency Contact
               </Button>
             </div>
           </div>
         </section>
+                <div className="flex flex-col items-center text-center mt-6 gap-4 px-4">
+          <h2 className="text-2xl sm:text-3xl font-bold neon-glow-purple">
+            Who are we?
+          </h2>
+          <p className="text-white-700 max-w-3xl leading-loose text-2xl">
+            SAHAS is a social impact website working towards Building Responsive, 
+            Inclusive, Safe and Equitable Urban Systems. We collaborate with 
+            government and non-government stakeholders in using big data to 
+            improve infrastructure and services in cities.
+          </p>
+        </div>
+
+        {/* NEXT PART */}
 
         <section className="px-4 py-12 glass-card border-t border-white/10">
           <div className="max-w-6xl mx-auto space-y-8">
@@ -244,6 +262,7 @@ export default function HomePage() {
                     <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center neon-glow-purple">
                       <Clock className="w-6 h-6 text-accent" />
                     </div>
+
                     <div>
                       <h3 className="font-semibold text-white">Safety Timer</h3>
                       <p className="text-sm text-white/70">Set a check-in reminder</p>
@@ -272,7 +291,7 @@ export default function HomePage() {
                 )}
               </CardContent>
             </Card>
-
+            
             <Card className="glass-card border-white/10">
               <CardContent className="p-6">
                 <h3 className="font-semibold mb-4 text-white flex items-center gap-2">
@@ -340,6 +359,10 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
+          <p className="items-center text-center mt-6 gap-4 px-4 text-xl">Architected with ♥ by Team SAHAS</p>
+          
+
+          
         </section>
       </main>
     </div>
