@@ -158,8 +158,16 @@ export default function HomePage() {
 
           <div className="max-w-6xl mx-auto text-center space-y-12 relative z-10">
             <div className="space-y-6">
-              <h1 className="text-5xl md:text-7xl font-bold text-white text-balance leading-tight">
-                Your Safety.
+              {/* background image */}
+              <img
+                src="https://res.cloudinary.com/dswk9scro/image/upload/v1757176269/defence_1_qqpfud.png"
+                alt="SAHAS background"
+                className="absolute inset-0 mx-auto w-[350px] md:w-[600px] h-[200px] md:h-[400px] opacity-38 object-contain -z-10"
+              />
+              {/* foreground content */}
+              <div>
+                <h1 className="text-5xl md:text-7xl font-bold text-white text-balance leading-tight ">
+                Safer Streets,
                 <br />
                 Stronger Women.
               </h1>
