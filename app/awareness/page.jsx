@@ -258,7 +258,7 @@ export default function AwarenessPage() {
 
       <div className="max-w-6xl mx-auto p-4">
         <Tabs defaultValue="rights" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 glass-card border border-white/10">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 glass-card border border-white/10">
             <TabsTrigger
               value="rights"
               className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow"
@@ -309,7 +309,7 @@ export default function AwarenessPage() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm mb-4 text-white/80">{right.description}</p>
-                    <div className="flex items-center justify-between text-sm">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm">
                       <div className="text-white/70">
                         <strong className="text-white">Penalty for violation:</strong> {right.penalty}
                       </div>
