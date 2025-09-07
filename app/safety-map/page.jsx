@@ -225,12 +225,12 @@ export default function SafetyMapPage() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Map Area */}
           <div className="lg:col-span-2">
             <Card className="glass-card border-white/10">
               <CardContent className="p-0">
-                <div className="relative h-96 lg:h-[600px] rounded-lg overflow-hidden">
+                <div className="relative h-[360px] sm:h-96 lg:h-[600px] rounded-lg overflow-hidden">
                   {isLoaded ? (
                     <GoogleMap
                       mapContainerStyle={mapContainerStyle}
@@ -302,7 +302,7 @@ export default function SafetyMapPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 glass-card border-white/10 rounded-lg hover:border-accent/30 transition-colors">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 glass-card border-white/10 rounded-lg hover:border-accent/30 transition-colors">
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                       <div>
@@ -310,12 +310,12 @@ export default function SafetyMapPage() {
                         <p className="text-sm text-white/70">Well-lit, high traffic</p>
                       </div>
                     </div>
-                    <Badge variant="secondary" className="bg-green-500/20 text-green-300 border-green-500/30">
+                    <Badge variant="secondary" className="bg-green-500/20 text-green-300 border-green-500/30 self-start sm:self-auto">
                       Safest
                     </Badge>
                   </div>
 
-                  <div className="flex items-center justify-between p-3 glass-card border-white/10 rounded-lg hover:border-accent/30 transition-colors">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 glass-card border-white/10 rounded-lg hover:border-accent/30 transition-colors">
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
                       <div>
@@ -323,7 +323,7 @@ export default function SafetyMapPage() {
                         <p className="text-sm text-white/70">Moderate traffic, some dark areas</p>
                       </div>
                     </div>
-                    <Badge variant="outline" className="border-yellow-500/30 text-yellow-300">
+                    <Badge variant="outline" className="border-yellow-500/30 text-yellow-300 self-start sm:self-auto">
                       Caution
                     </Badge>
                   </div>

@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react"
@@ -35,7 +36,7 @@ const mockReports = [
     description:
       "The street lights have been broken for weeks. Very dark after 7 PM, making it unsafe for women walking alone.",
     category: "poor-lighting",
-    reportedBy: "Sarah M.",
+    reportedBy: "Neha M.",
     reportedAt: "2 hours ago",
     likes: 12,
     comments: [
@@ -226,42 +227,42 @@ export default function CommunityPage() {
             </Button>
           </Link>
           <div className="flex items-center gap-2">
-            <Users className="w-6 h-6 text-primary neon-glow" />
-            <h1 className="font-bold text-lg text-white">Community</h1>
+            <Users className="w-5 h-5 sm:w-6 sm:h-6 text-primary neon-glow" />
+            <h1 className="font-bold text-base sm:text-lg text-white">Community</h1>
           </div>
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto p-4">
-        <Tabs defaultValue="reports" className="space-y-6">
+      <div className="max-w-6xl mx-auto p-3 sm:p-4">
+        <Tabs defaultValue="reports" className="space-y-4 sm:space-y-6">
           <TabsList className="grid w-full grid-cols-2 glass-card border border-white/10">
             <TabsTrigger
               value="reports"
-              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow"
+              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow text-sm sm:text-base py-2"
             >
               Safety Reports
             </TabsTrigger>
             <TabsTrigger
               value="campaigns"
-              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow"
+              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow text-sm sm:text-base py-2"
             >
               Awareness Campaigns
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="reports" className="space-y-6">
+          <TabsContent value="reports" className="space-y-4 sm:space-y-6">
             {/* Filters and New Report */}
-            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-              <div className="flex gap-2 overflow-x-auto pb-2">
+            <div className="flex flex-col gap-4">
+              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                 <Button
                   variant={selectedCategory === "all" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("all")}
-                  className={
+                  className={`text-xs whitespace-nowrap ${
                     selectedCategory === "all"
                       ? "bg-primary text-white neon-glow"
                       : "glass-card border-white/20 text-white hover:bg-white/10"
-                  }
+                  }`}
                 >
                   All Reports
                 </Button>
@@ -269,7 +270,7 @@ export default function CommunityPage() {
                   variant={selectedCategory === "harassment" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("harassment")}
-                  className={`whitespace-nowrap ${selectedCategory === "harassment" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
+                  className={`whitespace-nowrap text-xs ${selectedCategory === "harassment" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
                 >
                   Harassment
                 </Button>
@@ -277,7 +278,7 @@ export default function CommunityPage() {
                   variant={selectedCategory === "poor-lighting" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("poor-lighting")}
-                  className={`whitespace-nowrap ${selectedCategory === "poor-lighting" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
+                  className={`whitespace-nowrap text-xs ${selectedCategory === "poor-lighting" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
                 >
                   Poor Lighting
                 </Button>
@@ -285,7 +286,7 @@ export default function CommunityPage() {
                   variant={selectedCategory === "suspicious-activity" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("suspicious-activity")}
-                  className={`whitespace-nowrap ${selectedCategory === "suspicious-activity" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
+                  className={`whitespace-nowrap text-xs ${selectedCategory === "suspicious-activity" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
                 >
                   Suspicious Activity
                 </Button>
@@ -293,16 +294,16 @@ export default function CommunityPage() {
 
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button className="bg-primary hover:bg-primary/90 text-white neon-glow">
+                  <Button className="bg-primary hover:bg-primary/90 text-white neon-glow w-full sm:w-auto">
                     <Plus className="w-4 h-4 mr-2" />
                     New Report
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-md glass-card border-white/10">
+                <DialogContent className="max-w-md glass-card border-white/10 mx-4">
                   <DialogHeader>
                     <DialogTitle className="text-white">Submit Safety Report</DialogTitle>
                   </DialogHeader>
-                  <div className="space-y-4">
+                  <div className="space-y-4 max-h-[70vh] overflow-y-auto">
                     <div>
                       <Label htmlFor="title" className="text-white">
                         Title
@@ -391,7 +392,7 @@ export default function CommunityPage() {
                         value={newReport.description}
                         onChange={(e) => setNewReport({ ...newReport, description: e.target.value })}
                         rows={3}
-                        className="glass-card border-white/20 text-white placeholder:text-white/50 focus:border-primary/50"
+                        className="glass-card border-white/20 text-white placeholder:text-white/50 focus:border-primary/50 resize-none"
                       />
                     </div>
                     <Button
@@ -406,17 +407,17 @@ export default function CommunityPage() {
             </div>
 
             {/* Reports List */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {filteredReports.map((report) => (
                 <Card key={report.id} className="glass-card border-white/10 hover:border-accent/30 transition-colors">
-                  <CardContent className="p-6">
+                  <CardContent className="p-4 sm:p-6">
                     <div className="space-y-4">
                       {/* Report Header */}
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-2 flex-wrap">
                             {getCategoryIcon(report.category)}
-                            <h3 className="font-semibold text-white">{report.title}</h3>
+                            <h3 className="font-semibold text-white text-sm sm:text-base leading-tight">{report.title}</h3>
                             {report.verified && (
                               <Badge
                                 variant="secondary"
@@ -426,10 +427,10 @@ export default function CommunityPage() {
                               </Badge>
                             )}
                           </div>
-                          <div className="flex items-center gap-4 text-sm text-white/70 mb-2">
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-white/70 mb-2">
                             <div className="flex items-center gap-1">
                               <MapPin className="w-3 h-3" />
-                              {report.location}
+                              <span className="break-words">{report.location}</span>
                             </div>
                             <div className="flex items-center gap-1">
                               <Clock className="w-3 h-3" />
@@ -437,32 +438,34 @@ export default function CommunityPage() {
                             </div>
                           </div>
                         </div>
-                        <Badge className={getSeverityColor(report.severity)}>{report.severity} priority</Badge>
+                        <Badge className={`${getSeverityColor(report.severity)} text-xs self-start`}>
+                          {report.severity} priority
+                        </Badge>
                       </div>
 
                       {/* Report Content */}
-                      <p className="text-sm text-white/80">{report.description}</p>
+                      <p className="text-sm text-white/80 leading-relaxed">{report.description}</p>
 
                       {/* Report Actions */}
-                      <div className="flex items-center justify-between pt-2 border-t border-white/10">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-white/10">
                         <div className="flex items-center gap-4">
                           <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => handleLikeReport(report.id)}
-                            className="flex items-center gap-1 text-white hover:bg-white/10 hover:text-primary"
+                            className="flex items-center gap-1 text-white hover:bg-white/10 hover:text-primary p-1 h-auto"
                           >
                             <ThumbsUp className="w-4 h-4" />
-                            {report.likes}
+                            <span className="text-sm">{report.likes}</span>
                           </Button>
                           <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => setSelectedReport(selectedReport === report.id ? null : report.id)}
-                            className="flex items-center gap-1 text-white hover:bg-white/10 hover:text-accent"
+                            className="flex items-center gap-1 text-white hover:bg-white/10 hover:text-accent p-1 h-auto"
                           >
                             <MessageCircle className="w-4 h-4" />
-                            {report.comments.length}
+                            <span className="text-sm">{report.comments.length}</span>
                           </Button>
                         </div>
                         <div className="text-xs text-white/50">Reported by {report.reportedBy}</div>
@@ -473,17 +476,17 @@ export default function CommunityPage() {
                         <div className="space-y-3 pt-4 border-t border-white/10">
                           {report.comments.map((comment) => (
                             <div key={comment.id} className="flex gap-3">
-                              <Avatar className="w-6 h-6">
+                              <Avatar className="w-6 h-6 flex-shrink-0">
                                 <AvatarFallback className="text-xs bg-primary/20 text-primary">
                                   {comment.author.charAt(0)}
                                 </AvatarFallback>
                               </Avatar>
-                              <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
+                              <div className="flex-1 min-w-0">
+                                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1">
                                   <span className="text-sm font-medium text-white">{comment.author}</span>
                                   <span className="text-xs text-white/50">{comment.timestamp}</span>
                                 </div>
-                                <p className="text-sm text-white/80">{comment.content}</p>
+                                <p className="text-sm text-white/80 leading-relaxed break-words">{comment.content}</p>
                               </div>
                             </div>
                           ))}
@@ -494,12 +497,12 @@ export default function CommunityPage() {
                               value={newComment}
                               onChange={(e) => setNewComment(e.target.value)}
                               onKeyPress={(e) => e.key === "Enter" && handleAddComment(report.id)}
-                              className="glass-card border-white/20 text-white placeholder:text-white/50 focus:border-primary/50"
+                              className="glass-card border-white/20 text-white placeholder:text-white/50 focus:border-primary/50 text-sm"
                             />
                             <Button
                               size="sm"
                               onClick={() => handleAddComment(report.id)}
-                              className="bg-primary hover:bg-primary/90 text-white neon-glow"
+                              className="bg-primary hover:bg-primary/90 text-white neon-glow text-sm px-3 flex-shrink-0"
                             >
                               Post
                             </Button>
@@ -513,46 +516,46 @@ export default function CommunityPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="campaigns" className="space-y-6">
-            <div className="grid gap-4">
+          <TabsContent value="campaigns" className="space-y-4 sm:space-y-6">
+            <div className="grid gap-3 sm:gap-4">
               {mockCampaigns.map((campaign) => (
                 <Card key={campaign.id} className="glass-card border-white/10 hover:border-accent/30 transition-colors">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 gap-3">
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          {campaign.type === "workshop" && <BookOpen className="w-5 h-5 text-primary neon-glow" />}
-                          {campaign.type === "awareness" && <Megaphone className="w-5 h-5 text-primary neon-glow" />}
-                          {campaign.type === "training" && <Shield className="w-5 h-5 text-primary neon-glow" />}
-                          <h3 className="font-semibold text-lg text-white">{campaign.title}</h3>
+                        <div className="flex items-center gap-2 mb-2 flex-wrap">
+                          {campaign.type === "workshop" && <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-primary neon-glow" />}
+                          {campaign.type === "awareness" && <Megaphone className="w-4 h-4 sm:w-5 sm:h-5 text-primary neon-glow" />}
+                          {campaign.type === "training" && <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-primary neon-glow" />}
+                          <h3 className="font-semibold text-base sm:text-lg text-white leading-tight">{campaign.title}</h3>
                         </div>
                         <p className="text-sm text-white/70 mb-3">Organized by {campaign.organizer}</p>
                       </div>
-                      <Badge variant="outline" className="capitalize border-white/20 text-white">
+                      <Badge variant="outline" className="capitalize border-white/20 text-white text-xs self-start">
                         {campaign.type}
                       </Badge>
                     </div>
 
-                    <p className="text-sm mb-4 text-white/80">{campaign.description}</p>
+                    <p className="text-sm mb-4 text-white/80 leading-relaxed">{campaign.description}</p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4">
                       <div className="flex items-center gap-2 text-sm text-white/70">
-                        <Calendar className="w-4 h-4 text-white/50" />
-                        <span>{campaign.date}</span>
+                        <Calendar className="w-4 h-4 text-white/50 flex-shrink-0" />
+                        <span className="break-words">{campaign.date}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-white/70">
-                        <Clock className="w-4 h-4 text-white/50" />
-                        <span>{campaign.time}</span>
+                        <Clock className="w-4 h-4 text-white/50 flex-shrink-0" />
+                        <span className="break-words">{campaign.time}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-white/70">
-                        <MapPin className="w-4 h-4 text-white/50" />
-                        <span>{campaign.location}</span>
+                      <div className="flex items-center gap-2 text-sm text-white/70 sm:col-span-2 lg:col-span-1">
+                        <MapPin className="w-4 h-4 text-white/50 flex-shrink-0" />
+                        <span className="break-words">{campaign.location}</span>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <div className="text-sm text-white/50">{campaign.participants} participants registered</div>
-                      <Button size="sm" className="bg-primary hover:bg-primary/90 text-white neon-glow">
+                      <Button size="sm" className="bg-primary hover:bg-primary/90 text-white neon-glow w-full sm:w-auto">
                         Register Now
                       </Button>
                     </div>
@@ -563,8 +566,9 @@ export default function CommunityPage() {
           </TabsContent>
         </Tabs>
       </div>
-      <p className="items-center text-center mt-6 gap-4 px-4 text-xl">Architected with ♥ by Team SAHAS</p>
-
+      <p className="items-center text-center mt-4 sm:mt-6 gap-4 px-4 text-sm sm:text-base md:text-lg lg:text-xl">
+        Architected with ♥ by Team SAHAS
+      </p>
     </div>
   )
 }
