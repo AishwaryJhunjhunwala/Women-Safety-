@@ -219,15 +219,15 @@ export default function CommunityPage() {
     <div className="min-h-screen">
       {/* Header */}
       <header className="sticky top-0 z-50 glass-card border-b border-white/10 px-4 py-3">
-        <div className="flex items-center gap-4 max-w-6xl mx-auto">
+        <div className="flex items-center gap-2 sm:gap-4 max-w-6xl mx-auto">
           <Link href="/">
-            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
-              <ArrowLeft className="w-5 h-5" />
+            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 h-8 w-8 sm:h-10 sm:w-10">
+              <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
           </Link>
           <div className="flex items-center gap-2">
-            <Users className="w-6 h-6 text-primary neon-glow" />
-            <h1 className="font-bold text-lg text-white">Community</h1>
+            <Users className="w-5 h-5 sm:w-6 sm:h-6 text-primary neon-glow" />
+            <h1 className="font-bold text-base sm:text-lg text-white">Community</h1>
           </div>
         </div>
       </header>
@@ -251,17 +251,17 @@ export default function CommunityPage() {
 
           <TabsContent value="reports" className="space-y-6">
             {/* Filters and New Report */}
-            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-              <div className="flex gap-2 overflow-x-auto pb-2">
+            <div className="flex flex-col gap-4">
+              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                 <Button
                   variant={selectedCategory === "all" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("all")}
-                  className={
+                  className={`whitespace-nowrap flex-shrink-0 ${
                     selectedCategory === "all"
                       ? "bg-primary text-white neon-glow"
                       : "glass-card border-white/20 text-white hover:bg-white/10"
-                  }
+                  }`}
                 >
                   All Reports
                 </Button>
@@ -269,7 +269,7 @@ export default function CommunityPage() {
                   variant={selectedCategory === "harassment" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("harassment")}
-                  className={`whitespace-nowrap ${selectedCategory === "harassment" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
+                  className={`whitespace-nowrap flex-shrink-0 ${selectedCategory === "harassment" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
                 >
                   Harassment
                 </Button>
@@ -277,7 +277,7 @@ export default function CommunityPage() {
                   variant={selectedCategory === "poor-lighting" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("poor-lighting")}
-                  className={`whitespace-nowrap ${selectedCategory === "poor-lighting" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
+                  className={`whitespace-nowrap flex-shrink-0 ${selectedCategory === "poor-lighting" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
                 >
                   Poor Lighting
                 </Button>
@@ -285,22 +285,23 @@ export default function CommunityPage() {
                   variant={selectedCategory === "suspicious-activity" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("suspicious-activity")}
-                  className={`whitespace-nowrap ${selectedCategory === "suspicious-activity" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
+                  className={`whitespace-nowrap flex-shrink-0 ${selectedCategory === "suspicious-activity" ? "bg-primary text-white neon-glow" : "glass-card border-white/20 text-white hover:bg-white/10"}`}
                 >
                   Suspicious Activity
                 </Button>
               </div>
 
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button className="bg-primary hover:bg-primary/90 text-white neon-glow">
-                    <Plus className="w-4 h-4 mr-2" />
-                    New Report
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-md glass-card border-white/10">
+              <div className="flex justify-end">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="bg-primary hover:bg-primary/90 text-white neon-glow w-full sm:w-auto">
+                      <Plus className="w-4 h-4 mr-2" />
+                      New Report
+                    </Button>
+                  </DialogTrigger>
+                <DialogContent className="max-w-md mx-4 sm:mx-0 glass-card border-white/10 max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
-                    <DialogTitle className="text-white">Submit Safety Report</DialogTitle>
+                    <DialogTitle className="text-white text-lg sm:text-xl">Submit Safety Report</DialogTitle>
                   </DialogHeader>
                   <div className="space-y-4">
                     <div>
@@ -403,48 +404,51 @@ export default function CommunityPage() {
                   </div>
                 </DialogContent>
               </Dialog>
+              </div>
             </div>
 
             {/* Reports List */}
             <div className="space-y-4">
               {filteredReports.map((report) => (
                 <Card key={report.id} className="glass-card border-white/10 hover:border-accent/30 transition-colors">
-                  <CardContent className="p-6">
+                  <CardContent className="p-4 sm:p-6">
                     <div className="space-y-4">
                       {/* Report Header */}
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            {getCategoryIcon(report.category)}
-                            <h3 className="font-semibold text-white">{report.title}</h3>
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                            <div className="flex items-center gap-2">
+                              {getCategoryIcon(report.category)}
+                              <h3 className="font-semibold text-white text-sm sm:text-base break-words">{report.title}</h3>
+                            </div>
                             {report.verified && (
                               <Badge
                                 variant="secondary"
-                                className="text-xs bg-green-500/20 text-green-300 border-green-500/30"
+                                className="text-xs bg-green-500/20 text-green-300 border-green-500/30 w-fit"
                               >
                                 Verified
                               </Badge>
                             )}
                           </div>
-                          <div className="flex items-center gap-4 text-sm text-white/70 mb-2">
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-white/70 mb-2">
                             <div className="flex items-center gap-1">
-                              <MapPin className="w-3 h-3" />
-                              {report.location}
+                              <MapPin className="w-3 h-3 flex-shrink-0" />
+                              <span className="truncate">{report.location}</span>
                             </div>
                             <div className="flex items-center gap-1">
-                              <Clock className="w-3 h-3" />
-                              {report.reportedAt}
+                              <Clock className="w-3 h-3 flex-shrink-0" />
+                              <span>{report.reportedAt}</span>
                             </div>
                           </div>
                         </div>
-                        <Badge className={getSeverityColor(report.severity)}>{report.severity} priority</Badge>
+                        <Badge className={`${getSeverityColor(report.severity)} w-fit`}>{report.severity} priority</Badge>
                       </div>
 
                       {/* Report Content */}
                       <p className="text-sm text-white/80">{report.description}</p>
 
                       {/* Report Actions */}
-                      <div className="flex items-center justify-between pt-2 border-t border-white/10">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2 border-t border-white/10">
                         <div className="flex items-center gap-4">
                           <Button
                             variant="ghost"
@@ -453,7 +457,8 @@ export default function CommunityPage() {
                             className="flex items-center gap-1 text-white hover:bg-white/10 hover:text-primary"
                           >
                             <ThumbsUp className="w-4 h-4" />
-                            {report.likes}
+                            <span className="hidden sm:inline">{report.likes}</span>
+                            <span className="sm:hidden">{report.likes}</span>
                           </Button>
                           <Button
                             variant="ghost"
@@ -462,7 +467,8 @@ export default function CommunityPage() {
                             className="flex items-center gap-1 text-white hover:bg-white/10 hover:text-accent"
                           >
                             <MessageCircle className="w-4 h-4" />
-                            {report.comments.length}
+                            <span className="hidden sm:inline">{report.comments.length}</span>
+                            <span className="sm:hidden">{report.comments.length}</span>
                           </Button>
                         </div>
                         <div className="text-xs text-white/50">Reported by {report.reportedBy}</div>
@@ -473,33 +479,33 @@ export default function CommunityPage() {
                         <div className="space-y-3 pt-4 border-t border-white/10">
                           {report.comments.map((comment) => (
                             <div key={comment.id} className="flex gap-3">
-                              <Avatar className="w-6 h-6">
+                              <Avatar className="w-6 h-6 flex-shrink-0">
                                 <AvatarFallback className="text-xs bg-primary/20 text-primary">
                                   {comment.author.charAt(0)}
                                 </AvatarFallback>
                               </Avatar>
-                              <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
+                              <div className="flex-1 min-w-0">
+                                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1">
                                   <span className="text-sm font-medium text-white">{comment.author}</span>
                                   <span className="text-xs text-white/50">{comment.timestamp}</span>
                                 </div>
-                                <p className="text-sm text-white/80">{comment.content}</p>
+                                <p className="text-sm text-white/80 break-words">{comment.content}</p>
                               </div>
                             </div>
                           ))}
 
-                          <div className="flex gap-2">
+                          <div className="flex flex-col sm:flex-row gap-2">
                             <Input
                               placeholder="Add a comment..."
                               value={newComment}
                               onChange={(e) => setNewComment(e.target.value)}
                               onKeyPress={(e) => e.key === "Enter" && handleAddComment(report.id)}
-                              className="glass-card border-white/20 text-white placeholder:text-white/50 focus:border-primary/50"
+                              className="glass-card border-white/20 text-white placeholder:text-white/50 focus:border-primary/50 flex-1"
                             />
                             <Button
                               size="sm"
                               onClick={() => handleAddComment(report.id)}
-                              className="bg-primary hover:bg-primary/90 text-white neon-glow"
+                              className="bg-primary hover:bg-primary/90 text-white neon-glow w-full sm:w-auto"
                             >
                               Post
                             </Button>
@@ -517,42 +523,42 @@ export default function CommunityPage() {
             <div className="grid gap-4">
               {mockCampaigns.map((campaign) => (
                 <Card key={campaign.id} className="glass-card border-white/10 hover:border-accent/30 transition-colors">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-1">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+                      <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-2">
-                          {campaign.type === "workshop" && <BookOpen className="w-5 h-5 text-primary neon-glow" />}
-                          {campaign.type === "awareness" && <Megaphone className="w-5 h-5 text-primary neon-glow" />}
-                          {campaign.type === "training" && <Shield className="w-5 h-5 text-primary neon-glow" />}
-                          <h3 className="font-semibold text-lg text-white">{campaign.title}</h3>
+                          {campaign.type === "workshop" && <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-primary neon-glow flex-shrink-0" />}
+                          {campaign.type === "awareness" && <Megaphone className="w-4 h-4 sm:w-5 sm:h-5 text-primary neon-glow flex-shrink-0" />}
+                          {campaign.type === "training" && <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-primary neon-glow flex-shrink-0" />}
+                          <h3 className="font-semibold text-base sm:text-lg text-white break-words">{campaign.title}</h3>
                         </div>
                         <p className="text-sm text-white/70 mb-3">Organized by {campaign.organizer}</p>
                       </div>
-                      <Badge variant="outline" className="capitalize border-white/20 text-white">
+                      <Badge variant="outline" className="capitalize border-white/20 text-white w-fit">
                         {campaign.type}
                       </Badge>
                     </div>
 
-                    <p className="text-sm mb-4 text-white/80">{campaign.description}</p>
+                    <p className="text-sm mb-4 text-white/80 break-words">{campaign.description}</p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4">
                       <div className="flex items-center gap-2 text-sm text-white/70">
-                        <Calendar className="w-4 h-4 text-white/50" />
-                        <span>{campaign.date}</span>
+                        <Calendar className="w-4 h-4 text-white/50 flex-shrink-0" />
+                        <span className="truncate">{campaign.date}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-white/70">
-                        <Clock className="w-4 h-4 text-white/50" />
-                        <span>{campaign.time}</span>
+                        <Clock className="w-4 h-4 text-white/50 flex-shrink-0" />
+                        <span className="truncate">{campaign.time}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-white/70">
-                        <MapPin className="w-4 h-4 text-white/50" />
-                        <span>{campaign.location}</span>
+                      <div className="flex items-center gap-2 text-sm text-white/70 sm:col-span-2 lg:col-span-1">
+                        <MapPin className="w-4 h-4 text-white/50 flex-shrink-0" />
+                        <span className="truncate">{campaign.location}</span>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                       <div className="text-sm text-white/50">{campaign.participants} participants registered</div>
-                      <Button size="sm" className="bg-primary hover:bg-primary/90 text-white neon-glow">
+                      <Button size="sm" className="bg-primary hover:bg-primary/90 text-white neon-glow w-full sm:w-auto">
                         Register Now
                       </Button>
                     </div>
@@ -563,7 +569,7 @@ export default function CommunityPage() {
           </TabsContent>
         </Tabs>
       </div>
-      <p className="items-center text-center mt-6 gap-4 px-4 text-xl">Architected with ♥ by Team SAHAS</p>
+      <p className="items-center text-center mt-6 gap-4 px-4 text-sm sm:text-base lg:text-xl">Architected with ♥ by Team SAHAS</p>
 
     </div>
   )
