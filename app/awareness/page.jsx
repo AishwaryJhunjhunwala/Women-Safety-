@@ -242,78 +242,80 @@ export default function AwarenessPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="sticky top-0 z-50 glass-card border-b border-white/10 px-4 py-3">
-        <div className="flex items-center gap-4 max-w-6xl mx-auto">
+      <header className="sticky top-0 z-50 glass-card border-b border-white/10 px-3 sm:px-4 py-3">
+        <div className="flex items-center gap-2 sm:gap-4 max-w-6xl mx-auto">
           <Link href="/">
-            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
-              <ArrowLeft className="w-5 h-5" />
+            <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 h-8 w-8 sm:h-10 sm:w-10">
+              <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
           </Link>
           <div className="flex items-center gap-2">
-            <BookOpen className="w-6 h-6 text-primary neon-glow" />
-            <h1 className="font-bold text-lg text-white">Awareness & Resources</h1>
+            <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary neon-glow" />
+            <h1 className="font-bold text-base sm:text-lg text-white">Awareness & Resources</h1>
           </div>
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto p-4">
-        <Tabs defaultValue="rights" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 glass-card border border-white/10">
+      <div className="max-w-6xl mx-auto p-3 sm:p-4">
+        <Tabs defaultValue="rights" className="space-y-4 sm:space-y-6">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 glass-card border border-white/10 h-auto">
             <TabsTrigger
               value="rights"
-              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow"
+              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow text-xs sm:text-sm py-2 px-2 sm:px-4"
             >
-              Legal Rights
+              <span className="hidden sm:inline">Legal Rights</span>
+              <span className="sm:hidden">Rights</span>
             </TabsTrigger>
             <TabsTrigger
               value="helplines"
-              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow"
+              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow text-xs sm:text-sm py-2 px-2 sm:px-4"
             >
               Helplines
             </TabsTrigger>
             <TabsTrigger
               value="tutorials"
-              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow"
+              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow text-xs sm:text-sm py-2 px-2 sm:px-4"
             >
               Tutorials
             </TabsTrigger>
             <TabsTrigger
               value="news"
-              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow"
+              className="text-white data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:neon-glow text-xs sm:text-sm py-2 px-2 sm:px-4"
             >
-              Latest News
+              <span className="hidden sm:inline">Latest News</span>
+              <span className="sm:hidden">News</span>
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="rights" className="space-y-6">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold mb-2 text-white">Know Your Rights</h2>
-              <p className="text-white/70 max-w-2xl mx-auto">
+          <TabsContent value="rights" className="space-y-4 sm:space-y-6">
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold mb-2 text-white">Know Your Rights</h2>
+              <p className="text-white/70 max-w-2xl mx-auto text-sm sm:text-base px-4">
                 Understanding your legal rights is the first step towards ensuring your safety and seeking justice.
               </p>
             </div>
 
-            <div className="grid gap-6">
+            <div className="grid gap-4 sm:gap-6">
               {legalRights.map((right) => (
                 <Card key={right.id} className="glass-card border-white/10 hover:border-accent/30 transition-colors">
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-3">
-                        <Scale className="w-6 h-6 text-primary neon-glow" />
-                        <CardTitle className="text-lg text-white">{right.title}</CardTitle>
+                  <CardHeader className="pb-3 sm:pb-6">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                      <div className="flex items-start gap-3">
+                        <Scale className="w-5 h-5 sm:w-6 sm:h-6 text-primary neon-glow flex-shrink-0 mt-0.5" />
+                        <CardTitle className="text-base sm:text-lg text-white leading-tight">{right.title}</CardTitle>
                       </div>
-                      <Badge variant="outline" className="border-white/20 text-white">
+                      <Badge variant="outline" className="border-white/20 text-white text-xs self-start sm:self-auto">
                         {right.section}
                       </Badge>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-sm mb-4 text-white/80">{right.description}</p>
+                  <CardContent className="pt-0">
+                    <p className="text-sm mb-4 text-white/80 leading-relaxed">{right.description}</p>
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm">
                       <div className="text-white/70">
                         <strong className="text-white">Penalty for violation:</strong> {right.penalty}
                       </div>
-                      <Button variant="ghost" size="sm" className="text-white hover:bg-white/10 hover:text-accent">
+                      <Button variant="ghost" size="sm" className="text-white hover:bg-white/10 hover:text-accent self-start sm:self-auto">
                         <ExternalLink className="w-4 h-4 mr-1" />
                         Learn More
                       </Button>
@@ -324,33 +326,35 @@ export default function AwarenessPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="helplines" className="space-y-6">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold mb-2 text-white">Emergency Helplines</h2>
-              <p className="text-white/70 max-w-2xl mx-auto">
+          <TabsContent value="helplines" className="space-y-4 sm:space-y-6">
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold mb-2 text-white">Emergency Helplines</h2>
+              <p className="text-white/70 max-w-2xl mx-auto text-sm sm:text-base px-4">
                 Keep these numbers handy. Don't hesitate to call for help when you need it.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
               {helplines.map((helpline) => (
                 <Card key={helpline.id} className="glass-card border-white/10 hover:border-accent/30 transition-colors">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      {getHelplineIcon(helpline.type)}
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-semibold text-white">{helpline.name}</h3>
-                          <Badge variant="secondary" className="capitalize bg-white/10 text-white border-white/20">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0">
+                        {getHelplineIcon(helpline.type)}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-2">
+                          <h3 className="font-semibold text-white text-sm sm:text-base leading-tight">{helpline.name}</h3>
+                          <Badge variant="secondary" className="capitalize bg-white/10 text-white border-white/20 text-xs self-start sm:self-auto">
                             {helpline.type}
                           </Badge>
                         </div>
-                        <p className="text-sm text-white/70 mb-3">{helpline.description}</p>
-                        <div className="flex items-center justify-between">
+                        <p className="text-xs sm:text-sm text-white/70 mb-3 leading-relaxed">{helpline.description}</p>
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                           <div className="text-xs text-white/50">{helpline.availability}</div>
                           <a href={`tel:${helpline.number}`}>
-                            <Button size="sm" className="font-mono bg-primary hover:bg-primary/90 text-white neon-glow">
-                              <Phone className="w-4 h-4 mr-1" />
+                            <Button size="sm" className="font-mono bg-primary hover:bg-primary/90 text-white neon-glow text-xs sm:text-sm h-8 sm:h-9">
+                              <Phone className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                               {helpline.number}
                             </Button>
                           </a>
@@ -363,26 +367,28 @@ export default function AwarenessPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="tutorials" className="space-y-6">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold mb-2 text-white">Self-Defense & Safety Tutorials</h2>
-              <p className="text-white/70 max-w-2xl mx-auto">
+          <TabsContent value="tutorials" className="space-y-4 sm:space-y-6">
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold mb-2 text-white">Self-Defense & Safety Tutorials</h2>
+              <p className="text-white/70 max-w-2xl mx-auto text-sm sm:text-base px-4">
                 Learn practical skills and knowledge to protect yourself and stay safe.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {tutorials.map((tutorial) => (
                 <Card
                   key={tutorial.id}
                   className="cursor-pointer glass-card border-white/10 hover:border-accent/30 hover:scale-105 transition-all duration-300"
                 >
-                  <CardContent className="p-6">
+                  <CardContent className="p-4 sm:p-6">
                     <div className="flex items-start gap-3 mb-3">
-                      {getTutorialIcon(tutorial.type)}
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-sm mb-1 text-white">{tutorial.title}</h3>
-                        <div className="flex items-center gap-2 mb-2">
+                      <div className="flex-shrink-0">
+                        {getTutorialIcon(tutorial.type)}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-xs sm:text-sm mb-1 text-white leading-tight">{tutorial.title}</h3>
+                        <div className="flex flex-wrap items-center gap-1 sm:gap-2 mb-2">
                           <Badge variant="outline" className="text-xs capitalize border-white/20 text-white">
                             {tutorial.type}
                           </Badge>
@@ -393,11 +399,11 @@ export default function AwarenessPage() {
                         </div>
                       </div>
                     </div>
-                    <p className="text-xs text-white/70 mb-4">{tutorial.description}</p>
+                    <p className="text-xs text-white/70 mb-4 leading-relaxed">{tutorial.description}</p>
                     <Button
                       size="sm"
                       variant="outline"
-                      className="w-full glass-card border-white/20 text-white hover:bg-white/10 hover:neon-glow-purple bg-transparent"
+                      className="w-full glass-card border-white/20 text-white hover:bg-white/10 hover:neon-glow-purple bg-transparent text-xs sm:text-sm h-8 sm:h-9"
                     >
                       <ExternalLink className="w-3 h-3 mr-1" />
                       Start Learning
@@ -408,23 +414,23 @@ export default function AwarenessPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="news" className="space-y-6">
-            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-6">
+          <TabsContent value="news" className="space-y-4 sm:space-y-6">
+            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-4 sm:mb-6">
               <div>
-                <h2 className="text-2xl font-bold mb-2 text-white">Latest Safety News</h2>
-                <p className="text-white/70">Stay updated with the latest women's safety initiatives and policies.</p>
+                <h2 className="text-xl sm:text-2xl font-bold mb-2 text-white">Latest Safety News</h2>
+                <p className="text-white/70 text-sm sm:text-base">Stay updated with the latest women's safety initiatives and policies.</p>
               </div>
 
-              <div className="flex gap-2 overflow-x-auto pb-2">
+              <div className="flex gap-2 overflow-x-auto pb-2 w-full sm:w-auto">
                 <Button
                   variant={selectedCategory === "all" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("all")}
-                  className={
+                  className={`text-xs sm:text-sm whitespace-nowrap ${
                     selectedCategory === "all"
                       ? "bg-primary text-white neon-glow"
                       : "glass-card border-white/20 text-white hover:bg-white/10"
-                  }
+                  }`}
                 >
                   All News
                 </Button>
@@ -432,7 +438,7 @@ export default function AwarenessPage() {
                   variant={selectedCategory === "policy" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("policy")}
-                  className={`whitespace-nowrap ${
+                  className={`text-xs sm:text-sm whitespace-nowrap ${
                     selectedCategory === "policy"
                       ? "bg-primary text-white neon-glow"
                       : "glass-card border-white/20 text-white hover:bg-white/10"
@@ -444,7 +450,7 @@ export default function AwarenessPage() {
                   variant={selectedCategory === "initiative" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("initiative")}
-                  className={`whitespace-nowrap ${
+                  className={`text-xs sm:text-sm whitespace-nowrap ${
                     selectedCategory === "initiative"
                       ? "bg-primary text-white neon-glow"
                       : "glass-card border-white/20 text-white hover:bg-white/10"
@@ -456,7 +462,7 @@ export default function AwarenessPage() {
                   variant={selectedCategory === "technology" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory("technology")}
-                  className={`whitespace-nowrap ${
+                  className={`text-xs sm:text-sm whitespace-nowrap ${
                     selectedCategory === "technology"
                       ? "bg-primary text-white neon-glow"
                       : "glass-card border-white/20 text-white hover:bg-white/10"
@@ -467,17 +473,17 @@ export default function AwarenessPage() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {filteredNews.map((news) => (
                 <Card
                   key={news.id}
                   className="cursor-pointer glass-card border-white/10 hover:border-accent/30 hover:scale-[1.02] transition-all duration-300"
                 >
-                  <CardContent className="p-6">
+                  <CardContent className="p-4 sm:p-6">
                     <div className="flex items-start justify-between mb-3">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Badge variant="secondary" className="capitalize bg-accent/20 text-accent border-accent/30">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <Badge variant="secondary" className="capitalize bg-accent/20 text-accent border-accent/30 text-xs">
                             {news.category}
                           </Badge>
                           <div className="flex items-center gap-1 text-xs text-white/50">
@@ -485,12 +491,12 @@ export default function AwarenessPage() {
                             {news.date}
                           </div>
                         </div>
-                        <h3 className="font-semibold mb-2 text-white">{news.title}</h3>
-                        <p className="text-sm text-white/70 mb-3">{news.summary}</p>
-                        <div className="flex items-center justify-between">
+                        <h3 className="font-semibold mb-2 text-white text-sm sm:text-base leading-tight">{news.title}</h3>
+                        <p className="text-xs sm:text-sm text-white/70 mb-3 leading-relaxed">{news.summary}</p>
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                           <span className="text-xs text-white/50">Source: {news.source}</span>
-                          <Button variant="ghost" size="sm" className="text-white hover:bg-white/10 hover:text-accent">
-                            <ExternalLink className="w-4 h-4 mr-1" />
+                          <Button variant="ghost" size="sm" className="text-white hover:bg-white/10 hover:text-accent self-start sm:self-auto text-xs sm:text-sm">
+                            <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                             Read More
                           </Button>
                         </div>
@@ -503,7 +509,7 @@ export default function AwarenessPage() {
           </TabsContent>
         </Tabs>
       </div>
-      <p className="items-center text-center mt-6 gap-4 px-4 text-xl">Architected with ♥ by Team SAHAS</p>
+      <p className="items-center text-center mt-4 sm:mt-6 gap-4 px-4 text-sm sm:text-xl">Architected with ♥ by Team SAHAS</p>
 
     </div>
   )
