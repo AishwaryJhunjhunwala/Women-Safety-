@@ -745,6 +745,8 @@ export default function ProfilePage() {
           </TabsContent>
         </Tabs>
       </div>
+      <p className="items-center text-center mt-6 gap-4 px-4 text-xl">Architected with ♥ by Team SAHAS</p>
+
     </div>
   )
 }
